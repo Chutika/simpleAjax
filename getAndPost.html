@@ -30,8 +30,9 @@
                 //GET request using ajax
                 $.ajax({
                     url: 'http://35.193.129.5:8080/test',               //url that request will be sent to
-                    dataType: 'json',                                   //type of data that browser will recieved
                     type:"GET",                                         //type of request
+                    dataType: 'json',                                   //type of data that browser will recieved  
+
                     success: function (data) {                          //when browser recieved response, do this function
                         console.log("Get request " + data.message);
 
@@ -53,6 +54,7 @@
                 //POST request using ajax
                 $.ajax({
                     url: 'http://35.193.129.5:8080/test',                       //url that request will be sent to
+                    type: "POST",
                     dataType: 'json',
                     data: formData,                                             //data that we want to send to server
                     success: function (data) {                                  //when the POSt request is syccess, do this function
