@@ -25,32 +25,37 @@
         $(function () {
       
             // ------------------------------- simple get request -------------------------------
+            //select tag with id=get, if the selected is clicked GET request is sent
             $("#get").click(function () {
-
+                //GET request using ajax
                 $.ajax({
-                    url: 'http://35.193.129.5:8080/test',
-                    dataType: 'json',
-                    type:"GET",
-                    success: function (data) {
+                    url: 'http://35.193.129.5:8080/test',               //url that request will be sent to
+                    dataType: 'json',                                   //type of data that browser will recieved
+                    type:"GET",                                         //type of request
+                    success: function (data) {                          //when browser recieved response, do this function
                         console.log("Get request " + data.message);
-                        var info = "<p>" + data.message + "</p>"
-                        $("#getInfo").append(info)
+
+                        var info = "<p>" + data.message + "</p>"        //create html with data in the response
+                        $("#getInfo").append(info)                      //append this html inside the tag with id=getInfo
                     }
                 });
             });
             // ------------------------------- simple post request -------------------------------
+            //select tag with id=post, if the selected is clicked POST request is sent
             $("#post").click(function () {
-
+                
+                //extract the value from form
                 var formData = {
                     name: $('input[name=name]').val(),
                     age: $('input[name=age]').val()
                 }
-
+                
+                //POST request using ajax
                 $.ajax({
-                    url: 'http://35.193.129.5:8080/test',
+                    url: 'http://35.193.129.5:8080/test',                       //url that request will be sent to
                     dataType: 'json',
-                    data: formData,
-                    success: function (data) {
+                    data: formData,                                             //data that we want to send to server
+                    success: function (data) {                                  //when the POSt request is syccess, do this function
                         console.log("Post request success");
                         var info = "<p>" + formData.name + " : " + formData.age + "</p>"
                         $("#postInfo").append(info)
