@@ -15,7 +15,7 @@
     <form action="http://35.193.129.5:8080/test" method="POST">
         <input type="text" name="name" placeholder="name">
         <input type="text" name="age" placeholder="age">
-        <input type="submit" id="post">
+        <button id="post">submit</button>
     </form>
     <div id="postInfo"></div>
 
@@ -42,7 +42,7 @@
             });
             // ------------------------------- simple post request -------------------------------
             //select tag with id=post, if the selected is clicked POST request is sent
-            $("#post").click(function () {
+            $("#post").click(function (event) {
                 
                 //extract the value from form
                 var formData = {
@@ -61,6 +61,8 @@
                         $("#postInfo").append(info)
                     }
                 });
+
+                event.preventDefault();
             });
 
 
