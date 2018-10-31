@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <title>GET and POST</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <button id="get">GET Request</button>
+    <div id="getInfo">
+        <p>yeyyyyy</p>
+    </div>
+
+    <form action="http://35.193.129.5:8080/test" method="POST">
+        <input type="text" name="name" placeholder="name">
+        <input type="text" name="age" placeholder="age">
+        <input type="submit" id="post">
+    </form>
+    <div id="postInfo"></div>
+
+    <!-- --------------------------------------- JAVASCRIPT ---------------------------------------------- -->
+    <script>
+       
+        $(function () {
+      
+            // ------------------------------- simple get request -------------------------------
+            $("#get").click(function () {
+
+                $.ajax({
+                    url: 'http://35.193.129.5:8080/test',
+                    dataType: 'json',
+                    type:"GET",
+                    success: function (data) {
+                        console.log("Get request " + data.message);
+                        var info = "<p>" + data.message + "</p>"
+                        $("#getInfo").append(info)
+                    }
+                });
+            });
+            // ------------------------------- simple post request -------------------------------
+            $("#post").click(function () {
+
+                var formData = {
+                    name: $('input[name=name]').val(),
+                    age: $('input[name=age]').val()
+                }
+
+                $.ajax({
+                    url: 'http://35.193.129.5:8080/test',
+                    dataType: 'json',
+                    data: formData,
+                    success: function (data) {
+                        console.log("Post request success");
+                        var info = "<p>" + formData.name + " : " + formData.age + "</p>"
+                        $("#postInfo").append(info)
+                    }
+                });
+            });
+
+
+
+        });
+
+
+
+    </script>
+    <!-- --------------------------------------- JAVASCRIPT ---------------------------------------------- -->
+</body>
+
+</html>
